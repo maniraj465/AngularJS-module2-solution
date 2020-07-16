@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ng-repeat example</title>
+  <script src="js/angular.min.js"></script>
+  <script src="js/app.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body ng-app="myApp">
+<div class="container">
+  <div class="row col-md-12">
+    <div class="col-md-6" ng-controller="ToBuyListController as toBuyList">
+      <table class="table table-hover">
+        <h5 align="center">To Buy List</h5>
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Counts</th>
+            <th scope="col">Items</th>
+            <th scope="col">Buy now</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in toBuyList.toBuyItemList">
+            <th scope="row">{{$index + 1}}</th>
+            <td> Buy {{item.count}}</td>
+            <td>{{item.name}}</td>
+            <td><button ng-click="toBuyList.addToBoughtList($index, item.name, item.count)" class="btn btn-primary">Bought</button></td>
+          </tr>
+          <div ng-show="toBuyList.errorMessage" class="error">{{toBuyList.errorMessage}}</div>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-hover" ng-controller="AlreadyBoughtListController as alreadyBoughtList">
+        <h5 align="center">Already Bought List</h5>
+        <thead>
+          <tr>
+            <th scope="col">S.No</th>
+            <th scope="col">Counts</th>
+            <th scope="col">Item</th>
+            <th scope="col">Remove Item</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in alreadyBoughtList.boughtItemList">
+            <th scope="row">{{$index + 1}}</th>
+            <td> Bought {{item.count}}</td>
+            <td>{{item.name}}</td>
+            <td><button class="btn btn-primary" ng-click="alreadyBoughtList.removeItem($index, item.name, item.count);">Remove Item</button></td>
+          </tr>
+          <div ng-if="!alreadyBoughtList.flag" class="error">Nothing bought yet!</div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 
+</body>
+</html>
