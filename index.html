@@ -34,7 +34,7 @@
             <td>{{item.name}}</td>
             <td><button ng-click="toBuyList.addToBoughtList($index, item.name, item.count)" class="btn btn-primary">Bought</button></td>
           </tr>
-          <div ng-if="toBuyList.toBuyItemList.length == 0" class="error">Everything is bought!</div>
+          <div ng-if="toBuyList.toBuyItemList.length === 0" class="error">Everything is bought!</div>
         </tbody>
       </table>
     </div>
@@ -56,7 +56,7 @@
             <td>{{item.name}}</td>
             <td><button class="btn btn-primary" ng-click="alreadyBoughtList.removeItem($index, item.name, item.count);">Remove Item</button></td>
           </tr>
-          <div ng-if="alreadyBoughtList.boughtItemList" class="error">Nothing bought yet!</div>
+          <div ng-show="alreadyBoughtList.boughtItemList.length =!= 0" class="error">Nothing bought yet!</div>
         </tbody>
       </table>
     </div>
